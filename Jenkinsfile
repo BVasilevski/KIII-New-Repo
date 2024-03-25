@@ -4,7 +4,8 @@ node {
         checkout scm
     }
     stage('Build image') {
-       app = docker.build("BVasilevski/kiii-new-repo")
+        def repositoryName = "BVasilevski/kiii-new-repo".toLowerCase()
+        app = docker.build(repositoryName)
     }
     stage('Push image') {   
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
